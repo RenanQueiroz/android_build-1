@@ -28,13 +28,6 @@ ifeq ($(KERNEL_HEADER_DEFCONFIG),)
 KERNEL_HEADER_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
 endif
 
-# Force 32-bit binder IPC for 64bit kernel with 32bit userspace
-ifeq ($(KERNEL_ARCH),arm64)
-ifeq ($(TARGET_ARCH),arm)
-KERNEL_CONFIG_OVERRIDE := CONFIG_ANDROID_BINDER_IPC_32BIT=y
-endif
-endif
-
 ifeq ($(KERNEL_ARCH),arm64)
 KERNEL_CROSS_COMPILE := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-
 else ifeq ($(KERNEL_ARCH),arm)
